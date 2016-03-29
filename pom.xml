@@ -5,7 +5,7 @@
     <packaging>war</packaging>
     <version>1.0</version>
     <name>vivado Webapp</name>
-    <url>http://openstack.vivado.com</url>
+    <url>http://openstack.vivado.cn</url>
     <properties>
 		<!-- spring版本号 -->
 		<spring.version>3.2.9.RELEASE</spring.version>
