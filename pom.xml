@@ -213,7 +213,11 @@
 			<artifactId>druid</artifactId>
 			<version>1.0.6</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>com.vega</groupId>
+			<artifactId>openstack</artifactId>
+			<version>1.2</version>
+		</dependency>
 	</dependencies>
     <build>
         <finalName>springmvc</finalName>
