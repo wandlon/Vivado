@@ -11,65 +11,79 @@ import com.vivado.entity.ServerModel;
 import com.vivado.entity.VncModel;
 
 /**
- * ĞéÄâÖ÷»ú²Ù×÷Àà
- * @author µÂÁú
+ * è™šæ‹Ÿä¸»æœºæ“ä½œç±»
+ * @author å¾·é¾™
  *
  */
 public interface OpenstackHandler {
 	
 	/**
-	 * ¸ù¾İĞéÄâ»úÊµÀıID»ñÈ¡ĞéÄâ»úĞÅÏ¢
-	 * @param instanceId ĞéÄâ»úÊµÀıID
-	 * @return ĞéÄâ»úĞÅÏ¢
+	 * æ ¹æ®è™šæ‹Ÿæœºå®ä¾‹IDè·å–è™šæ‹Ÿæœºä¿¡æ¯
+	 * @param instanceId è™šæ‹Ÿæœºå®ä¾‹ID
+	 * @return è™šæ‹Ÿæœºä¿¡æ¯
 	 */
 	ServerModel getByInstanceId(String instanceId);
 	
 	/**
-	 * ¸ù¾İÓÃ»§ID»ñÈ¡ĞéÄâ»úĞÅÏ¢
-	 * @param userId ÓÃ»§ID
-	 * @return ĞéÄâ»úĞÅÏ¢
+	 * æ ¹æ®ç”¨æˆ·IDè·å–è™šæ‹Ÿæœºä¿¡æ¯
+	 * @param userId ç”¨æˆ·ID
+	 * @return è™šæ‹Ÿæœºä¿¡æ¯
 	 */
 	List<ServerModel> getByUserId(String userId);
 	
 	/**
-	 * »ñÈ¡È«²¿ĞéÄâ»úÁĞ±í
-	 * @return È«²¿ĞéÄâ»úĞÅÏ¢
+	 * è·å–å…¨éƒ¨è™šæ‹Ÿæœºåˆ—è¡¨
+	 * @return å…¨éƒ¨è™šæ‹Ÿæœºä¿¡æ¯
 	 */
 	List<ServerModel> getAll();
 	
 	/**
-	 * ´´½¨ĞéÄâ»ú
-	 * @param serverName ĞéÄâ»úÃû³Æ
-	 * @param flavorId ĞéÄâ»ú¹æ¸ñID
-	 * @param imageId ĞéÄâ»úÄ£°åID
-	 * @param userId ÓÃ»§ID
-	 * @return true£º´´½¨³É¹¦£»false£º´´½¨Ê§°Ü
+	 * åˆ›å»ºè™šæ‹Ÿæœº
+	 * @param serverName è™šæ‹Ÿæœºåç§°
+	 * @param flavorId è™šæ‹Ÿæœºè§„æ ¼ID
+	 * @param imageId è™šæ‹Ÿæœºæ¨¡æ¿ID
+	 * @param userId ç”¨æˆ·ID
+	 * @return trueï¼šåˆ›å»ºæˆåŠŸï¼›falseï¼šåˆ›å»ºå¤±è´¥
 	 */
 	Boolean boot(String serverName, String flavorId, String imageId, String userId);
 	
 	/**
-	 * É¾³ıĞéÄâ»ú
-	 * @param instanceId ĞéÄâ»úÊµÀıID
-	 * @return true£ºÉ¾³ı³É¹¦£»false£ºÉ¾³ıÊ§°Ü
+	 * åˆ é™¤è™šæ‹Ÿæœº
+	 * @param instanceId è™šæ‹Ÿæœºå®ä¾‹ID
+	 * @return trueï¼šåˆ é™¤æˆåŠŸï¼›falseï¼šåˆ é™¤å¤±è´¥
 	 */
 	Boolean delete(String instanceId);
 	
 	/**
-	 * »ñÈ¡ĞéÄâ»úvncĞÅÏ¢
-	 * @param instanceId ĞéÄâ»úÊµÀıID
-	 * @return ĞéÄâ»úvncĞÅÏ¢
+	 * å¼€å¯è™šæ‹Ÿæœº
+	 * @param instanceId è™šæ‹Ÿæœºå®ä¾‹ID
+	 * @return trueï¼šå¼€å¯æˆåŠŸï¼›falseï¼šå¼€å¯å¤±è´¥
+	 */
+	Boolean start(String instanceId);
+	
+	/**
+	 * æ¢å¤è™šæ‹Ÿæœº
+	 * @param instanceId è™šæ‹Ÿæœºå®ä¾‹ID
+	 * @return trueï¼šæ¢å¤æˆåŠŸï¼›falseï¼šæ¢å¤å¤±è´¥
+	 */
+	Boolean resume(String instanceId);
+	
+	/**
+	 * è·å–è™šæ‹Ÿæœºvncä¿¡æ¯
+	 * @param instanceId è™šæ‹Ÿæœºå®ä¾‹ID
+	 * @return è™šæ‹Ÿæœºvncä¿¡æ¯
 	 */
 	VncModel getVnc(String instanceId);
 	
 	/**
-	 * »ñÈ¡ËùÓĞĞéÄâ»ú¹æ¸ñĞÅÏ¢
-	 * @return ĞéÄâ»ú¹æ¸ñĞÅÏ¢
+	 * è·å–æ‰€æœ‰è™šæ‹Ÿæœºè§„æ ¼ä¿¡æ¯
+	 * @return è™šæ‹Ÿæœºè§„æ ¼ä¿¡æ¯
 	 */
 	List<FlavorModel> getFlavors();
 	
 	/**
-	 * »ñÈ¡ËùÓĞĞéÄâ»úÄ£°åĞÅÏ¢
-	 * @return ĞéÄâ»úÄ£°åĞÅÏ¢
+	 * è·å–æ‰€æœ‰è™šæ‹Ÿæœºæ¨¡æ¿ä¿¡æ¯
+	 * @return è™šæ‹Ÿæœºæ¨¡æ¿ä¿¡æ¯
 	 */
 	List<ImageModel> getImages();
 }

@@ -27,8 +27,8 @@ import com.vivado.entity.VncModel;
 import com.vivado.openstack.OpenstackHandler;
 
 /**
- * ĞéÄâÖ÷»ú²Ù×÷ÊµÏÖ
- * @author µÂÁú
+ * è™šæ‹Ÿä¸»æœºæ“ä½œå®ç°
+ * @author å¾·é¾™
  *
  */
 
@@ -51,7 +51,7 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 
 	@Override
 	public ServerModel getByInstanceId(String instanceId) {
-		logger.info("»ñÈ¡ĞéÄâ»úĞÅÏ¢£ºinstanceId={}", instanceId);
+		logger.info("è·å–è™šæ‹Ÿæœºä¿¡æ¯ï¼šinstanceId={}", instanceId);
 		try {
 			Connect conn = getConnect();
 			if (conn == null) {
@@ -60,7 +60,7 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 			Server s = conn.getServer().getServerByInstanceId(instanceId);
 			return pareseServer(s);
 		} catch (Exception e) {
-			logger.error("»ñÈ¡ĞéÄâ»úĞÅÏ¢Ê§°Ü", e);
+			logger.error("è·å–è™šæ‹Ÿæœºä¿¡æ¯å¤±è´¥", e);
 		}
 		return null;
 	}
@@ -114,14 +114,14 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 		try {
 			return new Connect(host, tenantName, userName, userPasswd);
 		} catch (Exception e) {
-			logger.error("»ñÈ¡openstackÁ¬½ÓÊ§°Ü", e);
+			logger.error("è·å–openstackè¿æ¥å¤±è´¥", e);
 		}
 		return null;
 	}
 
 	@Override
 	public List<ServerModel> getByUserId(String userId) {
-		logger.info("»ñÈ¡ÓÃ»§ĞéÄâ»úĞÅÏ¢£ºuserId={}", userId);
+		logger.info("è·å–ç”¨æˆ·è™šæ‹Ÿæœºä¿¡æ¯ï¼šuserId={}", userId);
 		List<ServerModel> usmList = new ArrayList<>();
 		if (StringUtils.isBlank(userId)) {
 			return usmList;
@@ -135,14 +135,14 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 				}
 			}
 		} catch (Exception e) {
-			logger.error(" »ñÈ¡ÓÃ»§ĞéÄâ»úĞÅÏ¢Ê§°Ü", e);
+			logger.error(" è·å–ç”¨æˆ·è™šæ‹Ÿæœºä¿¡æ¯å¤±è´¥", e);
 		}
 		return usmList;
 	}
 
 	@Override
 	public List<ServerModel> getAll() {
-		logger.info("»ñÈ¡È«²¿ĞéÄâ»úĞÅÏ¢");
+		logger.info("è·å–å…¨éƒ¨è™šæ‹Ÿæœºä¿¡æ¯");
 		List<ServerModel> smList = new ArrayList<ServerModel>();
 		try {
 			Connect conn = getConnect();
@@ -161,14 +161,14 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 				}
 			}
 		} catch (Exception e) {
-			logger.error("»ñÈ¡È«²¿ĞéÄâ»úĞÅÏ¢Ê§°Ü", e);
+			logger.error("è·å–å…¨éƒ¨è™šæ‹Ÿæœºä¿¡æ¯å¤±è´¥", e);
 		}
 		return smList;
 	}
 
 	@Override
 	public Boolean boot(String serverName, String flavorId, String imageId, String userId) {
-		logger.info("´´½¨ĞéÄâ»ú£ºserverName={}, flavorId={}, imageId={}, userId={}", serverName, 
+		logger.info("åˆ›å»ºè™šæ‹Ÿæœºï¼šserverName={}, flavorId={}, imageId={}, userId={}", serverName, 
 				flavorId, imageId, userId);
 		Boolean result = false;
 		try {
@@ -185,14 +185,14 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 			params.put("create_time", String.valueOf(System.currentTimeMillis()));
 			conn.getServer().serverMeta(instanceId, params);
 		} catch (Exception e) {
-			logger.error("´´½¨ĞéÄâ»úÊ§°Ü", e);
+			logger.error("åˆ›å»ºè™šæ‹Ÿæœºå¤±è´¥", e);
 		}
 		return result;
 	}
 
 	@Override
 	public Boolean delete(String instanceId) {
-		logger.info("É¾³ıĞéÄâ»ú£ºinstanceId={}", instanceId);
+		logger.info("åˆ é™¤è™šæ‹Ÿæœºï¼šinstanceId={}", instanceId);
 		Boolean result = false;
 		try {
 			Connect conn = getConnect();
@@ -204,14 +204,14 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 				result = true;
 			}
 		} catch (Exception e) {
-			logger.error("É¾³ıĞéÄâ»úÊ§°Ü", e);
+			logger.error("åˆ é™¤è™šæ‹Ÿæœºå¤±è´¥", e);
 		}
 		return result;
 	}
 
 	@Override
 	public VncModel getVnc(String instanceId) {
-		logger.info("»ñÈ¡ĞéÄâ»úvncĞÅÏ¢£ºinstanceId={}", instanceId);
+		logger.info("è·å–è™šæ‹Ÿæœºvncä¿¡æ¯ï¼šinstanceId={}", instanceId);
 		try {
 			Connect conn = getConnect();
 			if (conn == null) {
@@ -220,7 +220,7 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 			Vnc vnc = conn.getServer().getWebSocketVNCByInstanceId(instanceId);
 			return parseVnc(vnc);
 		} catch (Exception e) {
-			logger.error("»ñÈ¡ĞéÄâ»úvncĞÅÏ¢Ê§°Ü, e");
+			logger.error("è·å–è™šæ‹Ÿæœºvncä¿¡æ¯å¤±è´¥, e");
 		}
 		return null;
 	}
@@ -238,7 +238,7 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 
 	@Override
 	public List<FlavorModel> getFlavors() {
-		logger.info("»ñÈ¡ĞéÄâ»ú¹æ¸ñĞÅÏ¢");
+		logger.info("è·å–è™šæ‹Ÿæœºè§„æ ¼ä¿¡æ¯");
 		List<FlavorModel> fmList = new ArrayList<FlavorModel>();
 		try {
 			Connect conn = getConnect();
@@ -257,7 +257,7 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 				}
 			}
 		} catch (Exception e) {
-			logger.error("»ñÈ¡ĞéÄâ»ú¹æ¸ñĞÅÏ¢Ê§°Ü", e);
+			logger.error("è·å–è™šæ‹Ÿæœºè§„æ ¼ä¿¡æ¯å¤±è´¥", e);
 		}
 		return fmList;
 	}
@@ -281,7 +281,7 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 
 	@Override
 	public List<ImageModel> getImages() {
-		logger.info("»ñÈ¡ĞéÄâ»úÄ£°åĞÅÏ¢");
+		logger.info("è·å–è™šæ‹Ÿæœºæ¨¡æ¿ä¿¡æ¯");
 		List<ImageModel> imList = new ArrayList<ImageModel>();
 		try {
 			Connect conn = getConnect();
@@ -297,7 +297,7 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 				}
 			}
 		} catch (Exception e) {
-			logger.error("»ñÈ¡ĞéÄâ»úÄ£°åĞÅÏ¢Ê§°Ü", e);
+			logger.error("è·å–è™šæ‹Ÿæœºæ¨¡æ¿ä¿¡æ¯å¤±è´¥", e);
 		}
 		return imList;
 	}
@@ -316,6 +316,44 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 		im.setImageState(image.getImageState());
 		im.setImageType(image.getImageType());
 		return im;
+	}
+
+	@Override
+	public Boolean start(String instanceId) {
+		logger.info("å¼€å¯è™šæ‹Ÿæœºï¼šinstanceId={}", instanceId);
+		Boolean result = false;
+		try {
+			Connect conn = getConnect();
+			if (conn == null) {
+				return result;
+			}
+			String ret = conn.getServer().startServer(instanceId);
+			if (StringUtils.isBlank(ret)) {
+				result = true;
+			}
+		} catch (Exception e) {
+			logger.error("å¼€å¯è™šæ‹Ÿæœºå¤±è´¥", e);
+		}
+		return result;
+	}
+
+	@Override
+	public Boolean resume(String instanceId) {
+		logger.info("æ¢å¤è™šæ‹Ÿæœºï¼šinstanceId={}", instanceId);
+		Boolean result = false;
+		try {
+			Connect conn = getConnect();
+			if (conn == null) {
+				return result;
+			}
+			String ret = conn.getServer().resumeServer(instanceId);
+			if (StringUtils.isBlank(ret)) {
+				result = true;
+			}
+		} catch (Exception e) {
+			logger.error("æ¢å¤è™šæ‹Ÿæœºå¤±è´¥", e);
+		}
+		return result;
 	}
 	
 	

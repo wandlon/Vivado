@@ -220,7 +220,7 @@
 		</dependency>
 	</dependencies>
     <build>
-        <finalName>springmvc</finalName>
+        <finalName>vivado</finalName>
         <plugins>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
@@ -228,7 +228,7 @@
 				<version>2.2</version>
 				<configuration>
 					<path>/</path>
-					<port>9090</port>
+					<port>8080</port>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -247,17 +247,4 @@
 		</plugins>
     </build>
     <artifactId>vivado</artifactId>
-    <repositories>  
-	    <repository>    
-	       <id>oschinaRepository</id>    
-	       <name>local private nexus</name>    
-	       <url>http://maven.oschina.net/content/groups/public/</url>    
-	       <releases>    
-	           <enabled>true</enabled>    
-	       </releases>    
-	        <snapshots>    
-	            <enabled>true</enabled>    
-	        </snapshots>    
-	    </repository>    
-	</repositories>
 </project>
