@@ -73,7 +73,7 @@ public interface OpenstackHandler {
 	 * @param instanceId 虚拟机实例ID
 	 * @return 虚拟机vnc信息
 	 */
-	VncModel getVnc(String instanceId);
+	String getVnc(String instanceId);
 	
 	/**
 	 * 获取所有虚拟机规格信息

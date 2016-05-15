@@ -176,14 +176,14 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 			if (conn == null) {
 				return result;
 			}
-			String instanceId = conn.getServer().boot(serverName, imageId, flavorId);
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("user_id", userId);
+			params.put("create_time", System.currentTimeMillis());
+			String instanceId = conn.getServer().boot(serverName, imageId, flavorId, params);
 			if (StringUtils.isBlank(instanceId)) {
 				return result;
 			}
-			Map<String, String> params = new HashMap<String, String>();
-			params.put("user_id", userId);
-			params.put("create_time", String.valueOf(System.currentTimeMillis()));
-			conn.getServer().serverMeta(instanceId, params);
+			result = true;
 		} catch (Exception e) {
 			logger.error("创建虚拟机失败", e);
 		}
@@ -210,15 +210,15 @@ public class OpenstackHandlerImpl implements OpenstackHandler {
 	}
 
 	@Override
-	public VncModel getVnc(String instanceId) {
+	public String getVnc(String instanceId) {
 		logger.info("获取虚拟机vnc信息：instanceId={}", instanceId);
 		try {
 			Connect conn = getConnect();
 			if (conn == null) {
 				return null;
 			}
-			Vnc vnc = conn.getServer().getWebSocketVNCByInstanceId(instanceId);
-			return parseVnc(vnc);
+			String vnc = conn.getServer().getVNCByInstanceId(instanceId);
+			return vnc;
 		} catch (Exception e) {
 			logger.error("获取虚拟机vnc信息失败, e");
 		}

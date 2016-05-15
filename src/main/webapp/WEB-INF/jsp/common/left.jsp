@@ -14,5 +14,4 @@
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/plugins/jquery.cookie.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/plugins/jquery.jgrowl.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/plugins/jquery.alerts.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/common/left.js"></script>
 </div><!--leftmenu-->

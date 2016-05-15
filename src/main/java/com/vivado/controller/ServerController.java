@@ -44,12 +44,18 @@ public class ServerController {
 		return "server/server";
 	}
 	
+	@RequestMapping(value = "/display", method=RequestMethod.GET)
+	public String display(String instanceId, Model model) {
+		model.addAttribute("instanceId", instanceId);
+		return "server/server_display";
+	}
+	
 	@RequestMapping(value = "/apply", method=RequestMethod.GET)
 	public String list(Model model){
-//		List<FlavorModel> fmList = openstackHandler.getFlavors();
-//		List<ImageModel> imList = openstackHandler.getImages();
-//		model.addAttribute("fmList", fmList);
-//		model.addAttribute("imList", imList);
+		List<FlavorModel> fmList = openstackHandler.getFlavors();
+		List<ImageModel> imList = openstackHandler.getImages();
+		model.addAttribute("fmList", fmList);
+		model.addAttribute("imList", imList);
 		return "server/server_add";
 	}
 	
@@ -103,6 +109,7 @@ public class ServerController {
 	@ResponseBody
 	public Object connect(String instanceId) {
 		Map<String, Object> result = new HashMap<String, Object>();
+		instanceId = instanceId.trim();
 		ServerModel sm = openstackHandler.getByInstanceId(instanceId);
 		if (sm == null) {
 			result.put("msg", "虚拟机不存在");
@@ -134,9 +141,9 @@ public class ServerController {
 			sleep();
 		}
 		if (flag) {
-			VncModel vm = openstackHandler.getVnc(instanceId);
+			String vnc = openstackHandler.getVnc(instanceId);
 			result.put("msg", "success");
-			result.put("vnc", vm);
+			result.put("vnc", vnc);
 		}
 		return result;
 	}

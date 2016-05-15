@@ -33,18 +33,22 @@ public class ServerTask {
 	
 	private static Logger logger = LoggerFactory.getLogger(ServerTask.class);
 	
-	@Scheduled(fixedRate=10000)
+	@Scheduled(fixedRate=60000)
 	public void check() {
 		logger.info("开始查找过期虚拟机...");
-//		List<ServerModel> smList = openstackHandler.getAll();
-//		for (int i = 0; i < smList.size(); i++) {
-//			ServerModel sm = smList.get(i);
-//			long curTime = System.currentTimeMillis();
-//			if (curTime - sm.getCreateTime() > Integer.parseInt(invalidTime) * 60 * 60 * 1000) {
-//				deleteServer(sm.getInstanceId());
-//				sleep();
-//			}
-//		}
+		List<ServerModel> smList = openstackHandler.getAll();
+		for (int i = 0; i < smList.size(); i++) {
+			ServerModel sm = smList.get(i);
+			long curTime = System.currentTimeMillis();
+			Long createTime = sm.getCreateTime();
+			if (createTime == null) {
+				createTime = System.currentTimeMillis();
+			}
+			if (curTime - createTime > Integer.parseInt(invalidTime) * 60 * 60 * 1000) {
+				deleteServer(sm.getInstanceId());
+				sleep();
+			}
+		}
 	}
 
 	private void sleep() {

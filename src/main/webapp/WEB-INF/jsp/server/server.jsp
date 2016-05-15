@@ -44,7 +44,6 @@
                 </div><!--tableoptions-->
 	            <table cellpadding="0" cellspacing="0" border="0" class="stdtable stdtablecb" id="dyntable2">
 	                <colgroup>
-	                    <col class="con0" style="width: 4%" />
 	                    <col class="con1" />
 	                    <col class="con0" />
 	                    <col class="con1" />
@@ -53,11 +52,9 @@
 	                    <col class="con0" />
 	                    <col class="con1" />
 	                    <col class="con0" />
-	                    <col class="con1" />
 	                </colgroup>
 	                <thead>
 	                    <tr>
-	                      	<th class="head0 nosort aligncenter"><input type="checkbox" class="checkall" /></th>
 	                      	<th class="head1">实例ID</th>
 	                        <th class="head0">名称</th>
 	                        <th class="head1">固定IP</th>
@@ -70,9 +67,6 @@
 	                </thead>
 	                <tfoot>
 	                    <tr>
-	                      	<th class="head0 aligncenter"><span class="center">
-	                        	<input type="checkbox" class="checkall" />
-	                      	</span></th>
 	                        <th class="head1">实例ID</th>
 	                        <th class="head0">名称</th>
 	                        <th class="head1">固定IP</th>
@@ -86,20 +80,15 @@
 	                <tbody>
 	                	<c:forEach var="sm" items="${smList}">
 	                		<tr>
-		                		<td align="center">
-		                			<span class="center">
-		                				<input type="checkbox" value="${sm.instanceId}" />
-		                			</span>
-		                		</td>
-						  		<td class="imeiId"><c:out value="${sm.instanceId}"/></td>
+						  		<td><c:out value="${sm.instanceId}"/></td>
 						  		<td><c:out value="${sm.serverName}"/></td>
 						  		<td><c:out value="${sm.fixedIp}"/></td>
 						  		<td><c:out value="${sm.floatingIp}"/></td>
 						  		<td><c:out value="${sm.hypervisorName}"/></td>
 						  		<td><c:out value="${sm.taskState}"/></td>
 						  		<td><c:out value="${sm.serverState}"/></td>
-						  		<td><a href="#" onclick="deleteServer(${sm.instanceId})">删除</a> | 
-						  		<a href="#" onclick="display?instanceId=${sm.instanceId}">登录</a></td>
+						  		<td><a href="#" onclick="deleteServer('${sm.instanceId}')">删除</a> | 
+						  		<a href="#" onclick="displayServer('${sm.instanceId}')">登录</a></td>
 					  		</tr>
 					  	</c:forEach>
 	                </tbody>

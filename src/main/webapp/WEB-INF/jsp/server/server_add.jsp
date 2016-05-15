@@ -42,6 +42,7 @@
             	<div id="validation" class="subcontent">
             	
                     <form id="applyServer" class="stdform">
+                    	<input type="hidden" name="userId" id="userId" value="12345" />
                     	<p>
                         	<label>虚拟机名称</label>
                             <span class="field"><input type="text" name="serverName" id="serverName" class="longinput" /></span>
